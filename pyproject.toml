@@ -2,11 +2,9 @@
 requires = ["flit_core >=3.6,<4"]
 build-backend = "flit_core.buildapi"
 
-[tool.flit.metadata]
-module = "openstats"
-author = "pmbrull"
-author-email = "peremiquelbrull@gmail.com"
-home-page = "https://github.com/pmbrull/open-stats"
+[project]
+name = "openstats"
+authors = [{name = "pmbrull", email = "peremiquelbrull@gmail.com"}]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Intended Audience :: Developers",
@@ -17,18 +15,26 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
-description-file = "README.md"
-requires = [
+readme = "README.md"
+dependencies = [
     "streamlit==1.5.0",
     "pandas==1.3.5",
     "requests==2.27.1",
     "watchdog==2.1.6",
     "levy==0.6.1",
     "loguru==0.6.0",
+    "typer==0.4.0",
 ]
 requires-python = ">=3.6"
+dynamic = ["version", "description"]
 
-[tool.flit.metadata.requires-extra]
+[project.urls]
+Home = "https://github.com/pmbrull/open-stats"
+
+[project.scripts]
+openstats-theme = "openstats.cli:app"
+
+[project.optional-dependencies]
 test = [
     "black==22.1.0",
     "isort==5.10.1",
