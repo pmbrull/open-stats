@@ -172,3 +172,8 @@ class Builder:
             self.profile_component()
             st.markdown("---")
             self.clear_cache_button()
+
+            st.write("\n\n")
+            st.markdown(
+                "Powered by [OpenStats](https://github.com/pmbrull/open-stats) 🚀"
+            )
