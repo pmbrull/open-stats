@@ -1,0 +1,24 @@
+# This is an example YAML to test the app locally
+
+title: "OpenMetadata - Community Stats"
+logo_file: "assets/openmetadata.png"
+
+client:
+  root: "api.github.com"
+  owner: "open-metadata"
+  repo: "OpenMetadata"
+  start_date: "Aug 1 2021"  # Format `%b %d %Y`
+
+style:
+  primary_color: "#7147E8"
+  background_color: "#F9F8FD"
+  secondary_background_color: "#EEEAF8"
+  text_color: "#37352F"
+  font: "sans serif"
+
+social: "
+        Come and say hi 👋\n
+        
+        [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/open-metadata/OpenMetadata)
+        [![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://slack.open-metadata.org/)
+        "
