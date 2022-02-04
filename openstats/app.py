@@ -5,7 +5,6 @@ import streamlit as st
 from levy.config import Config
 
 from openstats.components import Builder
-from openstats.theme import write_theme
 
 
 def stats(cfg: Config):
@@ -28,5 +27,4 @@ def stats(cfg: Config):
 
 def run():
     config = Config.read_file("openstats.yaml")
-    write_theme(config)
     stats(config)
