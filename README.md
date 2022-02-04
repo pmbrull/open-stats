@@ -1,2 +1,5 @@
-# open-stats
-Discover and share the stats of your OpenSource project!
+# Open Stats
+
+Discover and share the KPIs of your OpenSource project!
+
+

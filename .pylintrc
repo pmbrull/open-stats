@@ -1,0 +1,16 @@
+[BASIC]
+
+max-args = 7
+docstring-min-length=10
+
+# W1203: logging-fstring-interpolation - f-string brings better readability and unifies style
+# W0511: We allow for TODOs in the code
+# W0707: raise-missing-from - the exceptions are being raised close to the definition. This only adds unnecessary verbosity
+# W0212: protected access - when using internal values in class definition
+disable=W1203, W0511, W0707, W0212
+
+[FORMAT]
+# Adding more length than black as autoformatting leaves imports without line breaks, which
+# triggers C0301 on pylint
+max-line-length=140
+good-names=df, i
