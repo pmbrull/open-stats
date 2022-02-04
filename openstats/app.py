@@ -14,7 +14,7 @@ def stats(cfg: Config):
     """
     builder = Builder(cfg)
 
-    st.title(config.title)
+    st.title(cfg.title)
 
     builder.sidebar()
     builder.stars_component()
@@ -26,8 +26,7 @@ def stats(cfg: Config):
     builder.traffic_component()
 
 
-if __name__ == "__main__":
-
+def run():
     config = Config.read_file("openstats.yaml")
     write_theme(config)
     stats(config)

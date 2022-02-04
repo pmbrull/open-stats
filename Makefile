@@ -6,7 +6,7 @@ install:  ## Install flit and openstats
 	python -m flit install
 
 run:  ## Run openstats locally
-	python -m streamlit run app.py
+	python -m streamlit run test.py
 
 py_format:  ## Run black and isort to format the Python codebase
 	python -m isort app.py $(PROJECT_DIR) --profile black --multi-line 3
