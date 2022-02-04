@@ -9,8 +9,8 @@ run:  ## Run openstats locally
 	python -m streamlit run test.py
 
 py_format:  ## Run black and isort to format the Python codebase
-	python -m isort app.py $(PROJECT_DIR) --profile black --multi-line 3
-	python -m black app.py $(PROJECT_DIR)
+	python -m isort $(PROJECT_DIR) --profile black --multi-line 3
+	python -m black $(PROJECT_DIR)
 
 lint:  ## Check linting
 	python -m pylint --rcfile=.pylintrc $(PROJECT_DIR)
