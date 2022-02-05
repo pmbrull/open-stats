@@ -120,3 +120,7 @@ The app will first try to obtain the token from the environment variables and wi
 
 You can create and manage your `streamlit` apps at https://share.streamlit.io/. You can follow the [docs](https://docs.streamlit.io/streamlit-cloud/get-started/deploy-an-app)
 for more information.
+
+## Contributing
+
+Take a look at our [CONTRIBUTING](CONTRIBUTING.md) guide.
