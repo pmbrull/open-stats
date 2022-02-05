@@ -112,7 +112,23 @@ social: "
 Note that the `style` section is only to centralise and generate the `config.toml` file for `streamlit`. The
 only added value here is that we will use the `primary_color` for the theme and charts.
 
+If you don't want to add any image to the sidebar, just remove the YAML entry.
+
 > More on streamlit themes 👉 [blog](https://blog.streamlit.io/introducing-theming/)
+
+### Minimum Config
+
+The app can run with as minimum configuration as:
+
+```yaml
+title: "Levy"
+
+client:
+  root: "api.github.com"  # We only support GitHub API
+  owner: "pmbrull"
+  repo: "levy"
+  start_date: "Aug 1 2021"  # Format `%b %d %Y`
+```
 
 ## Secrets
 
