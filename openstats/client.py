@@ -10,6 +10,7 @@ from typing import Dict, Optional
 import requests
 import streamlit as st
 from levy.config import Config
+from loguru import logger
 
 
 class Client:
@@ -18,12 +19,19 @@ class Client:
     """
 
     def __init__(self, config: Config):
-        self.root = Path(config.client.root)
-        self.owner = config.client.owner
-        self.repo = config.client.repo
+
+        self.config = config
+
+        logger.info(f"Preparing client with {self.config.client._vars}")
+
+        self.root = Path(self.config.client.root)
+        self.owner = self.config.client.owner
+        self.repo = self.config.client.repo
 
         self.token = self._get_token()
-        self.start_date = datetime.strptime("Aug 1 2021", "%b %d %Y")
+        self.start_date = datetime.strptime(
+            self.config.client("start_date", "Aug 1 2021"), "%b %d %Y"
+        )
 
         self.headers = {
             "Accept": "application/vnd.github.v3.star+json",

@@ -22,6 +22,8 @@ class Builder:
         self.client = Client(self.config)
         self.data = Data(self.client)
 
+        self.color = self.config.style("primary_color", "#7147E8")
+
     def stars_component(self):
         """
         Prepare the graph to show the stars evolution
@@ -48,7 +50,7 @@ class Builder:
                 .encode(
                     x=alt.X("date:T", axis=alt.Axis(tickCount=12, grid=False)),
                     y="stars:Q",
-                    color=alt.value(self.config.style.primary_color),
+                    color=alt.value(self.color),
                 )
                 .properties(
                     width=650,
@@ -117,7 +119,7 @@ class Builder:
                         ),
                     ),
                     y=alt.Y("contributions"),
-                    color=alt.value(self.config.style.primary_color),
+                    color=alt.value(self.color),
                 )
             )
 
@@ -164,10 +166,17 @@ class Builder:
         st.metric("Repository Health %", f"{percentage}%")
 
     def sidebar(self):
+        """
+        Prepare the sidebar information with
+        logo, profile and social
+        """
 
         with st.sidebar.container():
-            st.image("./assets/openmetadata.png")
-            st.write("\n\n")
+
+            logo_file = self.config("logo_file")
+            if logo_file:
+                st.image(logo_file)
+                st.write("\n\n")
 
             self.profile_component()
             st.markdown("---")
