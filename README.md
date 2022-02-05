@@ -25,6 +25,18 @@ a single view.
 
 > If you'd like to see other metrics or graphics, open an issue or jump into the action!
 
+---
+
+- [Requirements](#requirements)
+- [How does it work?](#how-does-it-work)
+- [Config](#config)
+- [Secrets](#secrets)
+- [Caching](#caching)
+- [Publishing](#publishing)
+- [Contributing](#contributing)
+- [Acknowledgements](#acknowledgements)
+- [License](#license)
+
 ## Requirements
 - Python 3.6+
 - The main dependencies are `streamlit` and `pandas`. The configuration is managed with [Levy](https://github.com/pmbrull/levy).
@@ -121,7 +133,7 @@ The app will first try to obtain the token from the environment variables and wi
 Not all computations are lightning fast. In order to provide the best possible UX, we cache the API results using
 `streamlit` memoization features. If you want to refresh the data, there is a `clear cache` button available.
 
-## Publish
+## Publishing
 
 You can create and manage your `streamlit` apps at https://share.streamlit.io/. You can follow the [docs](https://docs.streamlit.io/streamlit-cloud/get-started/deploy-an-app)
 for more information.
@@ -134,3 +146,6 @@ Take a look at our [CONTRIBUTING](CONTRIBUTING.md) guide.
 
 Thanks to [streamlit](https://streamlit.io/) for an amazing library and the [GitHub API](https://docs.github.com/en/rest)
 for sharing all the information! 
+
+## License
+OpenStats is released under [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
