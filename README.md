@@ -18,7 +18,7 @@ and shows the main KPIs for an OpenSource project:
 - **Star evolution**: What is the popularity of the repo?
 - **Good First issues**: Is there a focus towards the community?
 - **Recurrent collaborators**: How many people are involved?
-- **Repository traffic**: How many visits and forks do we have?
+- **Repository traffic**: How many visits and clones do we have?
 
 While there many other things to take into account, these metrics help us get a taste on how our project is doing in
 a single view.
