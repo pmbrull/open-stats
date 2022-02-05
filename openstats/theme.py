@@ -29,5 +29,5 @@ def write_theme(config: Config) -> None:
         Path(path).mkdir(exist_ok=True)
 
     # Save file
-    with open(Path(path) / "config.toml", "w") as file:
+    with open(Path(path) / "config.toml", "w", encoding="utf-8") as file:
         file.write(theme)
