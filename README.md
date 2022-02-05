@@ -116,6 +116,11 @@ The app will first try to obtain the token from the environment variables and wi
 
 > How to create an access token 👉 [docs](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
+## Caching
+
+Not all computations are lightning fast. In order to provide the best possible UX, we cache the API results using
+`streamlit` memoization features. If you want to refresh the data, there is a `clear cache` button available.
+
 ## Publish
 
 You can create and manage your `streamlit` apps at https://share.streamlit.io/. You can follow the [docs](https://docs.streamlit.io/streamlit-cloud/get-started/deploy-an-app)
@@ -124,3 +129,8 @@ for more information.
 ## Contributing
 
 Take a look at our [CONTRIBUTING](CONTRIBUTING.md) guide.
+
+## Acknowledgements
+
+Thanks to [streamlit](https://streamlit.io/) for an amazing library and the [GitHub API](https://docs.github.com/en/rest)
+for sharing all the information! 
