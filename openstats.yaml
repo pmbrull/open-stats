@@ -4,7 +4,7 @@ title: "OpenMetadata - Community Stats"
 logo_file: "assets/openmetadata.png"
 
 client:
-  root: "api.github.com"
+  root: "api.github.com"  # We only support GitHub API
   owner: "open-metadata"
   repo: "OpenMetadata"
   start_date: "Aug 1 2021"  # Format `%b %d %Y`
