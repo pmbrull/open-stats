@@ -22,7 +22,10 @@ class Builder:
         self.client = Client(self.config)
         self.data = Data(self.client)
 
-        self.color = self.config.style("primary_color", "#7147E8")
+        if self.config("style", None):
+            self.color = self.config.style("primary_color", "#7147E8")
+        else:
+            self.color = "#7147E8"
 
     def stars_component(self):
         """
@@ -173,7 +176,7 @@ class Builder:
 
         with st.sidebar.container():
 
-            logo_file = self.config("logo_file")
+            logo_file = self.config("logo_file", None)
             if logo_file:
                 st.image(logo_file)
                 st.write("\n\n")
