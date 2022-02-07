@@ -254,3 +254,40 @@ class Builder:
                 desc_col.write(
                     "Download the last 52 weeks of commit activity as a CSV file."
                 )
+
+    def weekly_commits_component(self):
+        """
+        Print line chart with weekly commits
+        """
+
+        commits = self.data.weekly_commits()
+
+        with st.container():
+
+            st.subheader("Weekly commits")
+
+            lines = (
+                alt.Chart(commits[30:])
+                .mark_line()
+                .encode(
+                    x=alt.X("date", axis=alt.Axis(labelAngle=-45)),
+                    y="commits:Q",
+                    color=alt.value(self.color),
+                )
+            )
+
+            text = lines.mark_text(
+                align="center",
+                baseline="middle",
+                fontSize=13,
+                dy=-13,  # Nudges text to top so it doesn't appear on top of the bar
+            ).encode(
+                text="commits:Q",
+            )
+
+            chart = (lines + text).properties(
+                width=800,
+                height=350,
+            )
+
+            st.altair_chart(chart)
