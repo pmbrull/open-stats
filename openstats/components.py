@@ -3,6 +3,8 @@ Module creating the different streamlit
 components to show on the app
 """
 
+from datetime import datetime
+
 import altair as alt
 import streamlit as st
 from levy.config import Config
@@ -189,3 +191,66 @@ class Builder:
             st.markdown(
                 "Powered by [OpenStats](https://github.com/pmbrull/open-stats) 🚀"
             )
+
+    def competitors_component(self):
+        """
+        Prepare a bar chart with commit activity
+        if we are comparing competitors
+        """
+
+        if self.config("competitors", None):
+
+            activity = self.data.competitors_data()
+
+            last_month = activity[-4:].sum().to_frame(name="commits")
+            last_month["repo"] = last_month.index
+
+            with st.container():
+                st.subheader("Competitors")
+
+                bars = (
+                    alt.Chart(
+                        last_month,
+                        title="Last month commit activity",
+                    )
+                    .mark_bar()
+                    .encode(
+                        x=alt.X(
+                            "repo",
+                            title="Repository",
+                            sort=alt.EncodingSortField(
+                                field="commits", op="count", order="descending"
+                            ),
+                            axis=alt.Axis(labelAngle=-45),
+                        ),
+                        y=alt.Y("commits", title="#Commits"),
+                        color=alt.value(self.color),
+                    )
+                )
+
+                text = bars.mark_text(
+                    align="center",
+                    baseline="middle",
+                    fontSize=13,
+                    dy=-8,  # Nudges text to top so it doesn't appear on top of the bar
+                ).encode(
+                    text="commits:Q",
+                )
+
+                chart = (bars + text).properties(
+                    width=650,
+                    height=350,
+                )
+
+                st.altair_chart(chart)
+
+                button_col, desc_col = st.columns(2)
+                button_col.download_button(
+                    label="Download CSV",
+                    data=activity.to_csv(index=False).encode("utf-8"),
+                    file_name=f"commit_activity_{datetime.now().strftime('%Y%m%d')}",
+                    mime="text/csv",
+                )
+                desc_col.write(
+                    "Download the last 52 weeks of commit activity as a CSV file."
+                )

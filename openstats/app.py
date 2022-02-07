@@ -23,8 +23,10 @@ def stats(cfg: Config):
     builder.contributors_component()
     st.markdown("---")
     builder.traffic_component()
+    st.markdown("---")
+    builder.competitors_component()
 
 
 def run():
-    config = Config.read_file("openstats.yaml")
+    config = Config.read_file("openstats.yaml", list_id="repo")
     stats(config)
