@@ -22,6 +22,9 @@ class Data:
     def __init__(self, client: Client):
         self.client = client
 
+        # Use client's Levy config
+        self.config = self.client.config
+
     def stars_data(self) -> Optional[DataFrame]:
         """
         Extract information from stargazers.
@@ -180,3 +183,32 @@ class Data:
         ).get("uniques")
 
         return clones, views
+
+    def get_participation(self, owner: str, repo: str):
+        """
+        Get all participation data for the last 52 weeks
+        as a reversed list
+        """
+        return self.client.get(
+            self.client.root / "repos" / owner / repo / "stats" / "participation"
+        ).json()["all"]
+
+    def competitors_data(self) -> DataFrame:
+        """
+        Compare your project stats vs. a list
+        of competitors.
+
+        Return my activity a list of competitor's activity
+        """
+        my_activity = {
+            self.client.repo: self.get_participation(
+                self.client.owner, self.client.repo
+            )
+        }
+
+        activity = {
+            competitor.repo: self.get_participation(competitor.owner, competitor.repo)
+            for competitor in self.config.competitors
+        }
+
+        return pd.DataFrame({**my_activity, **activity})
