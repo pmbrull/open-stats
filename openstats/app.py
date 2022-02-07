@@ -24,6 +24,8 @@ def stats(cfg: Config):
     st.markdown("---")
     builder.traffic_component()
     st.markdown("---")
+    builder.weekly_commits_component()
+    st.markdown("---")
     builder.competitors_component()
 
 

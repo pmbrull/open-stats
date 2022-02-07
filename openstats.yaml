@@ -25,7 +25,6 @@ social: "
 
 # Compare commit activity
 competitors:
-  - repo: datahub
-    owner: linkedin
-  - repo: amundsen
-    owner: amundsen-io
+  - repo: repo
+    owner: owner
+

@@ -212,3 +212,27 @@ class Data:
         }
 
         return pd.DataFrame({**my_activity, **activity})
+
+    def weekly_commits(self) -> DataFrame:
+        """
+        Get weekly commits for the last 52 weeks
+        with its date
+        """
+
+        my_activity = {
+            "commits": self.get_participation(self.client.owner, self.client.repo)
+        }
+
+        # Today minus days from Sunday
+        last_sunday = datetime.today() - timedelta(
+            days=datetime.today().isoweekday() % 7
+        )
+
+        # Prepare dates
+        dates = [
+            (last_sunday - timedelta(weeks=1 * i)).strftime("%Y/%m/%d")
+            for i in range(52)
+        ]
+        dates.reverse()
+
+        return pd.DataFrame({**my_activity, "date": dates})
