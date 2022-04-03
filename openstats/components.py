@@ -34,12 +34,12 @@ class Builder:
         Prepare the graph to show the stars evolution
         and the differences
         """
-        df = self.data.stars_data().reset_index(level=0)
+        df = self.data.stars_data()
 
         if df is not None and not df.empty:
             current = int(df.iloc[-1].get("stars"))
-            last_week = int(df.iloc[-2].get("stars"))
-            last_month = int(df.iloc[-4].get("stars"))
+            last_week = int(df.iloc[-7].get("stars"))
+            last_month = int(df.iloc[-30].get("stars"))
 
         else:
             st.write("Error fetching Star data")
