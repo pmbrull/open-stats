@@ -1,3 +1,3 @@
 """Discover and share your OpenSource KPIs"""
 
-__version__ = "0.1.8"
+__version__ = "0.1.9"
