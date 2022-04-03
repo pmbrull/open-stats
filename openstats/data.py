@@ -59,7 +59,8 @@ class Data:
             )
 
             df["date"] = pd.to_datetime(df["date"])
-            df = df.resample("W", on="date")[["stars"]].sum()
+            # This resample groups by week. Let's keep grouping by day.
+            # df = df.resample("W", on="date")[["stars"]].sum()
             df["stars"] = df["stars"].cumsum()
 
             return df
