@@ -4,7 +4,7 @@ the components
 """
 from collections import Counter
 from datetime import datetime, timedelta
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
 import pandas as pd
 from dateutil import parser
@@ -108,19 +108,37 @@ class Data:
 
         return None
 
-    def good_first_issues_data(self) -> Tuple[List[dict], List[dict]]:
+    @staticmethod
+    def is_support_issue(issue: List[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
         """
-        Analyze issues data for open and closed good
-        first issues.
+        Check if an issue is a support issue
+        """
+        if isinstance(issue, dict):
+            is_support = next(
+                iter(
+                    label
+                    for label in issue.get("labels")
+                    if isinstance(label, dict) and label.get("name") == "support"
+                ),
+                None,
+            )
+
+            return is_support
+
+        return None
+
+    def _issues_data(self, filter_fn: Callable) -> Tuple[List[dict], List[dict]]:
+        """
+        Return issue data with callable filtering.
+
+        filter_fn should return True / False from a list of issues
         """
 
         open_issues = self.client.get_all(
             self.client.root / "repos" / self.client.owner / self.client.repo / "issues"
         )
 
-        open_first_issues = [
-            issue for issue in open_issues if self.is_good_first_issue(issue)
-        ]
+        open_filtered_issues = [issue for issue in open_issues if filter_fn(issue)]
 
         closed_issues = self.client.get_all(
             self.client.root
@@ -131,11 +149,24 @@ class Data:
             "&state=closed",
         )
 
-        closed_first_issues = [
-            issue for issue in closed_issues if self.is_good_first_issue(issue)
-        ]
+        closed_filtered_issues = [issue for issue in closed_issues if filter_fn(issue)]
 
-        return open_first_issues, closed_first_issues
+        return open_filtered_issues, closed_filtered_issues
+
+    def good_first_issues_data(self) -> Tuple[List[dict], List[dict]]:
+        """
+        Analyze issues data for open and closed good
+        first issues.
+        """
+
+        return self._issues_data(filter_fn=self.is_good_first_issue)
+
+    def support_issues_data(self) -> Tuple[List[dict], List[dict]]:
+        """
+        Analyzes issues data for open and closed support issues
+        """
+
+        return self._issues_data(filter_fn=self.is_support_issue)
 
     def contributors_data(self):
         """

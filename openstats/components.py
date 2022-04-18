@@ -84,6 +84,19 @@ class Builder:
             open_issues.metric("Open good first issues", len(open_gfi))
             closed_issues.metric("Closed good first issues", len(closed_gfi))
 
+    def support_issues_component(self):
+        """
+        Present the good first issues
+        """
+        open_supp, closed_supp = self.data.support_issues_data()
+
+        with st.container():
+            st.subheader("Support issues")
+
+            open_issues, closed_issues = st.columns(2)
+            open_issues.metric("Open support issues", len(open_supp))
+            closed_issues.metric("Closed support issues", len(closed_supp))
+
     @staticmethod
     def clear_cache_button():
         """

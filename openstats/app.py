@@ -20,6 +20,8 @@ def stats(cfg: Config):
     st.markdown("---")
     builder.good_first_issues_component()
     st.markdown("---")
+    builder.support_issues_component()
+    st.markdown("---")
     builder.contributors_component()
     st.markdown("---")
     builder.traffic_component()
